@@ -1,0 +1,266 @@
+/* ----------------- BARRA DE NAVEGAÇÃO ----------------- */
+body {
+    background-color: #faa4e2;
+}
+
+.nav {
+    width: 100%;
+    height: 100px;
+    background-color: black;
+}
+
+li {
+    display: inline-flex;
+    padding: 40px;
+}
+
+button {
+    
+    border: none;
+    background-color: #faa4e2;
+    text-align: black;
+    font-weight: bold;
+    border-radius: 20px; 
+}
+
+/* ----------------- Bloco Principal ----------------- */
+
+.bloco-text {
+    width: 100%;
+    height: 500px;
+    background-color: black;
+}
+
+.titulo-principal {
+    color:  white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    padding: 5%;
+
+}
+
+.text-claro {
+    color:  white;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    font-size: 30px;
+
+}
+
+.text-escuro {
+    color: #faa4e2;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align:center;
+    font-size: 25px;
+    padding: 10%;
+}
+
+/* ----------------- Bloco Técnica ----------------- */
+
+.titulo-tecnica {
+    color:  white;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    padding: 2%;
+
+}
+
+.bloco-tec {
+    width: 100%;
+    height: 80px;
+    background-color: black;
+    
+}
+
+/* ----------------- Bloco das Técnicas ----------------- */
+
+/*russo */
+
+.bloco-russo {
+    width: 20%;
+    height: 30px;
+    background-color: black;
+    
+}
+
+.name-russo {
+    color:  white;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    font-size: 25px;
+}
+
+.bloco-info-russo {
+    width: 100%;
+    height: 110px;
+    background-color: #d5d8d8;
+    
+}
+
+.info-russo {
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    padding: 5%;
+    font-size: 20px;
+}
+
+.bloco-info-colocacao {
+    width: 100%;
+    height: 150px;
+    background-color: black;
+}
+
+.info-colocacao {
+    color:  white;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    font-size: 25px;
+}
+
+
+/* hibrido */
+
+
+.bloco-hibrido {
+    width: 20%;
+    height: 30px;
+    background-color: black;
+    display:inline-flex;
+}
+
+.name-hibrido {
+    color:  white;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    font-size: 25px;
+}
+
+.bloco-info-hibrido {
+    width: 100%;
+    height: 150px;
+    background-color: #d5d8d8;
+   
+}
+
+.info-hibrido {
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    padding: 5%;
+    font-size: 20px;
+}
+
+
+
+
+/* ----------------- Bloco Tamanho ----------------- */
+
+.titulo-tamanho{
+    color:  white;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    padding: 2%;
+
+}
+
+.bloco-tam {
+    width: 100%;
+    height: 80px;
+    background-color: black;
+}
+
+
+/* ----------------- Bloco dos Tamanhos ----------------- */
+
+
+.bloco-tamanho {
+    width: 20%;
+    height: 30px;
+    background-color: black;
+    
+}
+
+.name-tamanho{
+    color:  white;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    font-size: 25px;
+}
+
+.bloco-info-tamanho {
+    width: 100%;
+    height: 30px;
+    background-color: black;
+}
+
+.info-tamanho {
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    padding: 5%;
+    font-size: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ----------------- Bloco Desenhos ----------------- */
+
+.titulo-desenho {
+    color:  white;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    padding: 2%;
+
+}
+
+.bloco-des {
+    width: 100%;
+    height: 80px;
+    background-color: black;
+}
+
+/* ----------------- Bloco dos Desenhos ----------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------------- Bloco Curvaturas ----------------- */
+
+.titulo-curvatura {
+    color:  white;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    padding: 2%;
+
+}
+
+.bloco-cur {
+    width: 100%;
+    height: 80px;
+    background-color: black;
+}
+
+/* ----------------- Bloco das Curvaturas----------------- */
+
+
+
+
+/* ----------------- Rodapé----------------- */

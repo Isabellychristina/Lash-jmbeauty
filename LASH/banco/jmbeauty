@@ -1,0 +1,160 @@
+CREATE DATABASE `lashjm`;
+use lashjm;
+
+CREATE TABLE `usuarios` (
+  `id_usuario` int(7) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(40) NOT NULL,
+  `cpf` varchar(11) NOT NULL,
+  `data_nascimento` date NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `senha` varchar(32) NOT NULL,
+  `ativo` bit(1) NOT NULL DEFAULT b'1',
+  PRIMARY KEY (`id_usuario`),
+  UNIQUE KEY `cpf` (`cpf`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `clientes` (
+  `id_cliente` int(7) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(40) NOT NULL,
+  `cpf` varchar(11) NOT NULL,
+  `data_nascimento` date NOT NULL,
+  PRIMARY KEY (`id_cliente`),
+  UNIQUE KEY `cpf` (`cpf`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `servicos` (
+  `id_servico` int(7) NOT NULL AUTO_INCREMENT,
+  `nome_servico` varchar(40) NOT NULL,
+  `descricao` text(30) NOT NULL,
+  `preco` decimal(10) NOT NULL,
+  PRIMARY KEY (`id_servico`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `agendamentos` (
+    `id_agendamento` int(7) AUTO_INCREMENT PRIMARY KEY,  
+    `id_cliente` int(7) NOT NULL AUTO_INCREMENT,                               
+    `id_servico` int(7) NOT NULL AUTO_INCREMENT,                                
+    `data_agendamento` DATETIME NOT NULL,             
+    `status` VARCHAR(20) NOT NULL,   
+    PRIMARY KEY (`id_agendamento`),              
+    FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`), 
+    FOREIGN KEY (`id_servico`) REFERENCES `servicos` (`id_servico`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;  
+
+
+
+CREATE TABLE `produto` (
+  `id_produto` int(7) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) NOT NULL,
+  `descricao` varchar(100) DEFAULT NULL,
+  `data_validade` date NOT NULL,
+  `valor` decimal(6,2) NOT NULL,
+  `peso` decimal(4,2) DEFAULT NULL,
+  `qtde_estoque` int(5) NOT NULL,
+  PRIMARY KEY (`id_produto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `endereco` (
+  `id_endereco` int(7) NOT NULL AUTO_INCREMENT,
+  `cep` varchar(8) NOT NULL,
+  `logradouro` varchar(80) NOT NULL,
+  `numero` varchar(5) NOT NULL,
+  `bairro` varchar(30) NOT NULL,
+  `cidade` varchar(25) NOT NULL,
+   `complemento` varchar(60) NOT NULL,
+  `uf` varchar(2) NOT NULL,
+  `tipo_endereco` varchar(3) NOT NULL,
+  PRIMARY KEY (`id_endereco`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `email` (
+  `id` int(7) NOT NULL AUTO_INCREMENT,
+  `email` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `telefone` (
+  `id_telefone` int(7) NOT NULL AUTO_INCREMENT,
+  `numero` varchar(11) NOT NULL,
+  `tipo` varchar(3) NOT NULL,
+  PRIMARY KEY (`id_telefone`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `endereco_cliente` (
+  `id` int(7) NOT NULL AUTO_INCREMENT,
+  `id_endereco` int(7) NOT NULL,
+  `id_cliente` int(7) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_endereco_cliente_end` (`id_endereco`),
+  KEY `fk_endereco_cliente_cli` (`id_cliente`),
+  CONSTRAINT `fk_endereco_cliente_cli` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`),
+  CONSTRAINT `fk_endereco_cliente_end` FOREIGN KEY (`id_endereco`) REFERENCES `endereco` (`id_endereco`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `endereco_usuario` (
+  `id` int(7) NOT NULL AUTO_INCREMENT,
+  `id_endereco` int(7) NOT NULL,
+  `id_usuario` int(7) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_endereco_usuario_end` (`id_endereco`),
+  KEY `fk_endereco_usuario_usu` (`id_usuario`),
+  CONSTRAINT `fk_endereco_usuario_end` FOREIGN KEY (`id_endereco`) REFERENCES `endereco` (`id_endereco`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_endereco_usuario_usu` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `telefone_cliente` (
+  `id` int(7) NOT NULL AUTO_INCREMENT,
+  `id_telefone` int(7) NOT NULL,
+  `id_cliente` int(7) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_telefone_cliente_tel` (`id_telefone`),
+  KEY `fk_telefone_cliente_cli` (`id_cliente`),
+  CONSTRAINT `fk_telefone_cliente_cli` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`),
+  CONSTRAINT `fk_telefone_cliente_tel` FOREIGN KEY (`id_telefone`) REFERENCES `telefone` (`id_telefone`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `telefone_usuario` (
+  `id` int(7) NOT NULL AUTO_INCREMENT,
+  `id_telefone` int(7) NOT NULL,
+  `id_usuario` int(7) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_telefone_usuario_tel` (`id_telefone`),
+  KEY `fk_telefone_usuario_usu` (`id_usuario`),
+  CONSTRAINT `fk_telefone_usuario_tel` FOREIGN KEY (`id_telefone`) REFERENCES `telefone` (`id_telefone`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_telefone_usuario_usu` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_cliente_insert`(
+spnome varchar(40),
+spcpf varchar(11),
+spdata_nascimento date 
+)
+BEGIN
+	insert into cliente
+    values(0,
+    spnome, 
+    spcpf, 
+    spdata_nascimento);
+	select last_insert_id();
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_cliente_update`(
+spid int,
+spnome varchar(40),
+spdata_nascimento date
+)
+BEGIN
+	update cliente
+    set nome = spnome,
+    data_nascimento = spdata_nascimento
+    where id = spid;
+END$$
+DELIMITER ;
